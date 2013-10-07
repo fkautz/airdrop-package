@@ -4,6 +4,9 @@ run	apt-get update
 run	apt-get install -y -q apt-offline
 run	mkdir /offline
 workdir	/offline
-run	apt-offline set --install-packages ruby1.9.1 build-essential sqlite3 libsqlite3-dev -- deps.sig
+# eventually add docker to list of installed packages
+run	apt-offline set --install-packages ruby1.9.1 build-essential sqlite3 libsqlite3-dev git -- deps.sig
 run	apt-offline get deps.sig --bundle deps.zip
+VOLUME /package
+WORKDIR /package
 #run	apt-offline install deps.zip

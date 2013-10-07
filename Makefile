@@ -11,6 +11,7 @@ create_image:
 	docker build -t airdrop/testimage .
 	git clone https://github.com/fkautz/airdrop.git
 	cd airdrop && make
+	cd apt-offline && make
 
 package:
 	-rm -rf archive
@@ -18,6 +19,7 @@ package:
 	docker save airdrop/testimage > archive/testimage.tar
 	cp run.sh archive/run.sh
 	cp airdrop/airdrop.tar.gz archive/
+	cp apt-offline/deps.zip archive/
 	chmod +x archive/run.sh
 	makeself archive archive.bin package ./run.sh
 

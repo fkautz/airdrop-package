@@ -1,4 +1,12 @@
 #!/bin/sh
+
+# update packages
+apt-offline install deps.zip
+apt-get install -y -q ruby1.9.1
+apt-get install -y -q build-essential
+apt-get install -y -q sqlite3
+apt-get install -y -q libsqlite3-dev
+
 docker load < testimage.tar
 if [ ! -d "/root/airdrop" ]
 then
