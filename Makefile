@@ -2,12 +2,11 @@ default: clean create_image package
 
 clean:
 	-docker rmi airdrop/testimage
-	-rm web
 	-rm -rf airdrop
+	-rm bundler-1.3.5.gem
 	
 
 create_image:
-	go build web.go
 	docker build -t airdrop/testimage .
 	git clone https://github.com/fkautz/airdrop.git
 	cd airdrop && make
@@ -21,6 +20,8 @@ package:
 	cp airdrop/airdrop.tar.gz archive/
 	cp apt-offline/deps.zip archive/
 	chmod +x archive/run.sh
+	gem fetch bundler --version 1.3.5
+	mv bundler-1.3.5.gem archive/
 	makeself archive archive.bin package ./run.sh
 
 test:

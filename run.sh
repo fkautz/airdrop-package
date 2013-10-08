@@ -3,9 +3,11 @@
 # update packages
 apt-offline install deps.zip
 apt-get install -y -q ruby1.9.1
+apt-get install -y -q ruby1.9.1-dev
 apt-get install -y -q build-essential
 apt-get install -y -q sqlite3
 apt-get install -y -q libsqlite3-dev
+gem install bundler --version 1.3.5 --local bundler-1.3.5.gem
 
 docker load < testimage.tar
 if [ ! -d "/root/airdrop" ]
@@ -19,6 +21,7 @@ cd /root/airdrop
 # backup fails if these don't exist, need to fix. workaround for now
 mkdir -p /docker/airdrop/testimage/data
 mkdir -p /docker/airdrop/testimage/logs
+
 
 bundle install --deployment
 
